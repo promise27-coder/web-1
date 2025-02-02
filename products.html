@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - Eco-Friendly Finder</title>
+    <link rel="stylesheet" href="eco.css"> <!-- Linking the same CSS file as eco.html -->
+    <style>
+        /* Product Page Styling */
+        #products {
+            padding: 40px;
+            text-align: center;
+            background-color: #fff;
+            margin-top: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        #products h2 {
+            font-size: 2.5rem;
+            color: #1f7624; /* Medium green */
+            margin-bottom: 20px;
+        }
+
+        .product-card {
+            display: inline-block;
+            margin: 20px;
+            padding: 20px;
+            width: 300px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .product-card h3 {
+            font-size: 1.8rem;
+            color: #444941;
+            margin: 10px 0;
+        }
+
+        .product-card p {
+            font-size: 1rem;
+            color: #666;
+        }
+
+        .product-card button {
+            padding: 10px 20px;
+            font-size: 1.2rem;
+            background-color: #61c86b;
+            color: white;
+            border: none;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .product-card button:hover {
+            background-color: #4a9b4c;
+        }
+
+        /* Fade-in Animation */
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Eco-Friendly Product Finder</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html" id="home-link">Home</a></li>
+                <li><a href="products.html" id="products-link">Products</a></li>
+                <li><a href="about.html" id="about-link">About Us</a></li>
+                <li><a href="contact.html" id="contact-link">Contact</a></li>
+            </ul>
+        </nav>
+        
+    </header>
+    
+    <section id="products">
+        <h2>Our Products</h2>
+        <div id="product-container">
+            <!-- Products will be dynamically added here -->
+        </div>
+    </section>
+    
+    <footer>
+        <p>&copy; 2025 Eco-Friendly Finder. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // Product list
+        const products = [
+    {
+        name: "Bamboo Toothbrush",
+        description: "Eco-friendly and biodegradable bamboo toothbrush.",
+        price: "$5.99",
+        image: "https://m.media-amazon.com/images/I/71I1Hd5P0NS._SX679_PIbundle-4,TopRight,0,0_AA679SH20_.jpg"
+    },
+    {
+        name: "Reusable Water Bottle",
+        description: "Stainless steel bottle to reduce plastic waste.",
+        price: "$14.99",
+        image: "https://plus.unsplash.com/premium_photo-1664527305901-db3d4e724d15?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8UmV1c2FibGUlMjBXYXRlciUyMEJvdHRsZXxlbnwwfHwwfHx8MA%3D%3D"
+    },
+    {
+        name: "Compostable Plates",
+        description: "Biodegradable plates made from sugarcane fibers.",
+        price: "$9.99",
+        image: "https://plus.unsplash.com/premium_photo-1661427091086-4e291eb01b99?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Q29tcG9zdGFibGUlMjBQbGF0ZXN8ZW58MHx8MHx8fDA%3D"
+    },
+    {
+        name: "Organic Cotton T-Shirt",
+        description: "Soft and eco-friendly cotton T-shirt.",
+        price: "$19.99",
+        image: "https://plus.unsplash.com/premium_photo-1673356301514-2cad91907f74?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8T3JnYW5pYyUyMENvdHRvbiUyMFQlMjBTaGlydHxlbnwwfHwwfHx8MA%3D%3D"
+    },
+    {
+        name: "Solar-Powered Charger",
+        description: "Portable solar charger for your devices.",
+        price: "$29.99",
+        image: "https://plus.unsplash.com/premium_photo-1680085843310-969f304407ed?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8U29sYXIlMjBQb3dlcmVkJTIwQ2hhcmdlcnxlbnwwfHwwfHx8MA%3D%3D"
+    },
+    {
+        name: "Beeswax Food Wraps",
+        description: "Reusable wraps made from organic cotton and beeswax.",
+        price: "$12.99",
+        image: "https://images.unsplash.com/photo-1632142334452-7efccdbf9a1d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8QmVlc3dheCUyMEZvb2QlMjBXcmFwc3xlbnwwfHwwfHx8MA%3D%3D"
+    },
+    {
+        name: "Biodegradable Trash Bags",
+        description: "Compostable and eco-friendly trash bags.",
+        price: "$8.99",
+        image: "https://plus.unsplash.com/premium_photo-1737362946668-736437833671?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8QmlvZGVncmFkYWJsZSUyMFRyYXNoJTIwQmFnc3xlbnwwfHwwfHx8MA%3D%3D"
+    },
+    {
+        name: "Recycled Paper Notebook",
+        description: "Eco-friendly notebook made from recycled paper.",
+        price: "$6.99",
+        image: "https://images.unsplash.com/photo-1625533617580-3977f2651fc0?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8UmVjeWNsZWQlMjBQYXBlciUyME5vdGVib29rfGVufDB8fDB8fHww"
+    },
+    {
+        name: "Power Laundry Detergent",
+        description: "Eco-friendly laundry detergent for a cleaner world.",
+        price: "$4.99",
+        image: "https://d2kwrscaws6vau.cloudfront.net/products/Power-Laundry-1kg-V-11zon.jpg"
+    },
+    {
+        name: "Eco-Friendly Trash Bin",
+        description: "A sustainable trash bin made from recycled materials.",
+        price: "$15.99",
+        image: "https://static.wixstatic.com/media/c837a6_fe824dd79b8148d088f0d6f4c0a7fa9a~mv2.jpg/v1/fill/w_625,h_834,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/c837a6_fe824dd79b8148d088f0d6f4c0a7fa9a~mv2.jpg"
+    }
+];
+
+        // Function to display products dynamically
+        function displayProducts() {
+            const productContainer = document.getElementById("product-container");
+
+            products.forEach(product => {
+                // Create product card
+                const productCard = document.createElement("div");
+                productCard.classList.add("product-card");
+
+                // Add product image
+                const img = document.createElement("img");
+                img.src = product.image;
+                img.alt = product.name;
+                productCard.appendChild(img);
+
+                // Add product name
+                const name = document.createElement("h3");
+                name.textContent = product.name;
+                productCard.appendChild(name);
+
+                // Add product description
+                const desc = document.createElement("p");
+                desc.textContent = product.description;
+                productCard.appendChild(desc);
+
+                // Add product price
+                const price = document.createElement("p");
+                price.textContent = `Price: ${product.price}`;
+                price.style.fontWeight = "bold";
+                productCard.appendChild(price);
+
+                // Add "Buy Now" button
+                const button = document.createElement("button");
+                button.textContent = "Buy Now";
+                button.onclick = () => alert(`You selected: ${product.name}`);
+                productCard.appendChild(button);
+
+                // Append product card to container
+                productContainer.appendChild(productCard);
+            });
+        }
+
+        // Call function when page loads
+        document.addEventListener("DOMContentLoaded", displayProducts);
+    </script>
+    <script src="status.js"></script>
+</body>
+</html>

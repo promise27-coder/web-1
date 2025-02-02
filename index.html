@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Eco-Friendly Product Finder</title>
+    <link rel="stylesheet" href="eco.css"> <!-- Link to the same CSS file as eco.html -->
+    <style>
+        /* CSS for Home Page */
+        #home {
+            padding: 40px;
+            text-align: center;
+            background-color: #fff;
+            margin-top: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        #home h1 {
+            font-size: 3rem;
+            color: #5F7A61;
+            margin-bottom: 20px;
+        }
+
+        #home p {
+            font-size: 1.2rem;
+            color: #444941;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .cta-button {
+            padding: 12px 30px;
+            font-size: 1.3rem;
+            background-color: #52c25d;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #4a9b4c;
+        }
+
+        .feature-cards {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .feature-card {
+            background-color: #f4f9f4;
+            padding: 20px;
+            width: 250px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            color: #444941;
+            margin-bottom: 10px;
+        }
+
+        .feature-card p {
+            color: #666;
+        }
+
+        .feature-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        /* Active Page Highlight */
+       
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Eco-Friendly Product Finder</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html" id="home-link">Home</a></li>
+                <li><a href="products.html" id="products-link">Products</a></li>
+                <li><a href="about.html" id="about-link">About</a></li>
+                <li><a href="contact.html" id="contact-link">Contact</a></li>
+            </ul>
+        </nav>
+       
+    </header>
+    
+    <section id="home">
+        <h1>Welcome to Eco-Friendly Product Finder!</h1>
+        <p>Discover the best eco-friendly products that help you live a sustainable lifestyle and reduce your carbon footprint.</p>
+        <button class="cta-button" onclick="location.href='products.html'">Browse Products</button>
+        
+        <div class="feature-cards">
+            <div class="feature-card">
+                <img src="https://5.imimg.com/data5/LP/LD/UM/SELLER-4054045/ecofriendly-cotton-bag-1000x1000.jpg" alt="Eco Bag">
+                <h3>Eco-Friendly Bags</h3>
+                <p>Stylish and reusable bags to replace single-use plastic bags.</p>
+            </div>
+            <div class="feature-card">
+                <img src="https://makerbazar.in/cdn/shop/products/solarpannel01.jpg?v=1658404824&width=800" alt="Solar Charger">
+                <h3>Solar Chargers</h3>
+                <p>Charge your devices using solar energy – a green way to stay powered.</p>
+            </div>
+            <div class="feature-card">
+                <img src="https://cdn.shopify.com/s/files/1/0251/9410/2837/files/Ocean_Banner_Mob.png?v=1731370921" alt="Reusable Bottle">
+                <h3>Reusable Water Bottles</h3>
+                <p>Keep hydrated with bottles that help reduce plastic waste.</p>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <p>&copy; 2025 Eco-Friendly Finder. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // JavaScript to highlight the active page
+        function highlightActivePage() {
+            const page = window.location.pathname.split("/").pop(); // Get the current page filename
+            const links = {
+                "index.html": "home-link",
+                "products.html": "products-link",
+                "about.html": "about-link",
+                "contact.html": "contact-link"
+            };
+
+            if (links[page]) {
+                document.getElementById(links[page]).classList.add("active");
+            }
+        }
+
+        highlightActivePage();
+    </script>
+</body>
+</html>
