@@ -84,7 +84,39 @@
             margin-bottom: 15px;
         }
 
-        /* Active Page Highlight */
+        .active {
+    color: #1fd86c !important;
+    font-weight: bold;
+    border-bottom: 4px solid #27ae60;
+    position: relative;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Add a glowing effect */
+.active::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -6px;
+    width: 8px;
+    height: 8px;
+    background-color: #27ae60;
+    border-radius: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 0 8px rgba(39, 174, 96, 0.8);
+}
+
+/* Add a subtle underline animation */
+.active {
+    text-decoration: none;
+    display: inline-block;
+}
+
+.active:hover {
+    letter-spacing: 1px;
+    text-shadow: 0px 0px 5px rgba(31, 216, 108, 0.8);
+}
+
        
     </style>
 </head>
@@ -93,13 +125,14 @@
         <h1>Eco-Friendly Product Finder</h1>
         <nav>
             <ul>
-                <li><a href="index.html" id="home-link">Home</a></li>
-                <li><a href="products.html" id="products-link">Products</a></li>
-                <li><a href="about.html" id="about-link">About</a></li>
-                <li><a href="contact.html" id="contact-link">Contact</a></li>
+                <li id="home-link"><a href="index.html">Home</a></li>
+                <li id="products-link"><a href="products.html">Products</a></li>
+                <li id="about-link"><a href="about.html">About</a></li>
+                <li id="contact-link"><a href="contact.html">Contact</a></li>
+                <li id="cart-link"><a href="cart.html">Cart</a></li> <!-- Cart link -->
             </ul>
         </nav>
-       
+        
     </header>
     
     <section id="home">
@@ -107,23 +140,7 @@
         <p>Discover the best eco-friendly products that help you live a sustainable lifestyle and reduce your carbon footprint.</p>
         <button class="cta-button" onclick="location.href='products.html'">Browse Products</button>
         
-        <div class="feature-cards">
-            <div class="feature-card">
-                <img src="https://5.imimg.com/data5/LP/LD/UM/SELLER-4054045/ecofriendly-cotton-bag-1000x1000.jpg" alt="Eco Bag">
-                <h3>Eco-Friendly Bags</h3>
-                <p>Stylish and reusable bags to replace single-use plastic bags.</p>
-            </div>
-            <div class="feature-card">
-                <img src="https://makerbazar.in/cdn/shop/products/solarpannel01.jpg?v=1658404824&width=800" alt="Solar Charger">
-                <h3>Solar Chargers</h3>
-                <p>Charge your devices using solar energy – a green way to stay powered.</p>
-            </div>
-            <div class="feature-card">
-                <img src="https://cdn.shopify.com/s/files/1/0251/9410/2837/files/Ocean_Banner_Mob.png?v=1731370921" alt="Reusable Bottle">
-                <h3>Reusable Water Bottles</h3>
-                <p>Keep hydrated with bottles that help reduce plastic waste.</p>
-            </div>
-        </div>
+        
     </section>
     
     <footer>
@@ -147,6 +164,8 @@
         }
 
         highlightActivePage();
+        window.location.href = 'eco.html';
     </script>
+    
 </body>
 </html>

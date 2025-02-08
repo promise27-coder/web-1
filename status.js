@@ -1,17 +1,22 @@
-// Function to highlight the active page in navigation
 function highlightActivePage() {
-    const page = window.location.pathname.split("/").pop(); // Get the current page filename
+    const page = window.location.pathname.split("/").pop() || "index.html"; // Default index.html
     const links = {
         "index.html": "home-link",
         "products.html": "products-link",
         "about.html": "about-link",
-        "contact.html": "contact-link"
+        "contact.html": "contact-link",
+        "cart.html": "cart-link"
     };
 
+    // Remove active class from all links first
+    Object.values(links).forEach(id => {
+        document.getElementById(id)?.classList.remove("active");
+    });
+
+    // Add active class to the current page link
     if (links[page]) {
         document.getElementById(links[page]).classList.add("active");
     }
 }
 
-// Call the function when the page loads
 window.onload = highlightActivePage;

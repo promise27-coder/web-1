@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart Page</title>
+    <style>
+       /* Universal Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Basic Body Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background: #ffffff;
+    color: #376937;
+}
+
+/* Header Styling */
+header {
+    background: #2ecc71; /* Green background */
+    padding: 27px;
+    text-align: center;
+    color: white;
+    position: relative; /* For logo positioning */
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+}
+
+/* Logo Positioning */
+header .logo {
+    position: absolute;
+    left: 20px;
+    top: 8px;
+    height: 90px;
+}
+
+/* Navigation Styling */
+nav ul {
+    list-style: none; /* Removes bullets */
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+}
+
+/* Cart Container Styling */
+.cart-container {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+/* Cart Header Styling */
+.cart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cart-header h2 {
+    font-size: 2rem;
+}
+
+.cart-header button {
+    padding: 10px 20px;
+    background: #e74c3c; /* Red background */
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+}
+
+/* Cart Header Button Hover Effect */
+.cart-header button:hover {
+    background-color: #c0392b; /* Darker red on hover */
+}
+
+/* Cart Items Styling */
+.cart-items {
+    margin-top: 30px;
+}
+
+/* Cart Item Styling */
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    padding: 15px 0;
+}
+
+.cart-item img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.cart-item-details {
+    flex: 1;
+    margin-left: 20px;
+}
+
+.cart-item button {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.cart-item button:hover {
+    background-color: #c0392b; /* Darker red on hover */
+}
+
+/* Cart Summary Styling */
+.cart-summary {
+    margin-top: 30px;
+    text-align: right;
+}
+
+.cart-summary p {
+    font-size: 1.2rem;
+    margin: 10px 0;
+}
+
+.cart-summary .total {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.active {
+    color: #1fd86c !important;
+    font-weight: bold;
+    border-bottom: 4px solid #27ae60;
+    position: relative;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Add a glowing effect */
+.active::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -6px;
+    width: 8px;
+    height: 8px;
+    background-color: #27ae60;
+    border-radius: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 0 8px rgba(39, 174, 96, 0.8);
+}
+
+/* Add a subtle underline animation */
+.active {
+    text-decoration: none;
+    display: inline-block;
+}
+
+.active:hover {
+    letter-spacing: 1px;
+    text-shadow: 0px 0px 5px rgba(31, 216, 108, 0.8);
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <img src="logo.png" alt="Eco-Friendly Logo" class="logo">
+        <h1>Eco-Friendly Product Finder</h1>
+        <nav>
+            <ul>
+                <li id="home-link"><a href="index.html">Home</a></li>
+                <li id="products-link"><a href="products.html">Products</a></li>
+                <li id="about-link"><a href="about.html">About</a></li>
+                <li id="contact-link"><a href="contact.html">Contact</a></li>
+                <li id="cart-link"><a href="cart.html">Cart</a></li> <!-- Cart link -->
+            </ul>
+        </nav>
+        
+    </header>
+
+    <div class="cart-container">
+        <div class="cart-header">
+            <h2>Your Cart</h2>
+            <button id="checkout-btn">Proceed to Checkout</button>
+        </div>
+        <div class="cart-items" id="cart-items"></div>
+        <div class="cart-summary" id="cart-summary">
+            <p>Total Items: <span id="total-items">0</span></p>
+            <p>Total Price: $<span id="total-price">0.00</span></p>
+        </div>
+    </div>
+
+    <script>
+        const products = [
+            { id: 1, name: "Bamboo Toothbrush", price: 5.99, image: "https://unsplash.com/photos/6VhPY27jdps" },
+            { id: 2, name: "Reusable Water Bottle", price: 14.99, image: "https://unsplash.com/photos/7KLa-xLbSXA" },
+            { id: 3, name: "Compostable Plates", price: 9.99, image: "https://unsplash.com/photos/8manzosDSGM" },
+            { id: 4, name: "Organic Cotton T-Shirt", price: 19.99, image: "https://unsplash.com/photos/1Z2niiBPg5A" },
+            { id: 5, name: "Solar-Powered Charger", price: 29.99, image: "https://unsplash.com/photos/9wg5jCEPBsw" }
+        ];
+
+        let cart = [];
+
+        function addToCart(product) {
+            cart.push(product);
+            updateCart();
+        }
+
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            updateCart();
+        }
+
+        function updateCart() {
+            const cartItemsContainer = document.getElementById('cart-items');
+            const totalItems = document.getElementById('total-items');
+            const totalPrice = document.getElementById('total-price');
+
+            cartItemsContainer.innerHTML = '';
+            cart.forEach(product => {
+                const cartItem = document.createElement('div');
+                cartItem.classList.add('cart-item');
+                cartItem.innerHTML = `
+                    <img src="${product.image}" alt="${product.name}">
+                    <div class="cart-item-details">
+                        <h3>${product.name}</h3>
+                        <p>Price: $${product.price}</p>
+                    </div>
+                    <button onclick="removeFromCart(${product.id})">Remove</button>
+                `;
+                cartItemsContainer.appendChild(cartItem);
+            });
+
+            const total = cart.reduce((acc, product) => acc + product.price, 0);
+            totalItems.textContent = cart.length;
+            totalPrice.textContent = total.toFixed(2);
+        }
+
+        document.getElementById('checkout-btn').addEventListener('click', () => {
+            alert("Proceeding to checkout...");
+        });
+
+        // Display products on product page
+        function displayProducts() {
+            const productList = document.getElementById('product-list');
+            products.forEach(product => {
+                const productItem = document.createElement('div');
+                productItem.classList.add('product-item');
+                productItem.innerHTML = `
+                    <h3>${product.name}</h3>
+                    <p>$${product.price}</p>
+                    <button onclick="addToCart(${JSON.stringify(product)})">Add to Cart</button>
+                `;
+                productList.appendChild(productItem);
+            });
+        }
+        displayProducts();
+    </script>
+</body>
+</html>
